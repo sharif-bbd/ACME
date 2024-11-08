@@ -1,5 +1,6 @@
 import argparse
 import sys
+import ssl
 from http.server import HTTPServer
 from threading import Thread
 from dnslib.server import DNSServer
@@ -8,6 +9,7 @@ from acme_client.http01_handler import HTTP01Handler
 from acme_client.dns01_handler import DNS01Handler
 from acme_client.ACME_Client import ACME_Client
 from acme_client.ShutdownHandler import ShutdownHandler
+from acme_client.CertificateHandler import CertificateHandler
 
 
 if __name__ == "__main__":
@@ -60,5 +62,13 @@ if __name__ == "__main__":
 
     acme_client.save(certificate_url=certificate_url)
     
-
+    Cert_server = HTTPServer(("0.0.0.0", 5001),CertificateHandler)
+    context = ssl.SSLContext(ssl.PROTOCOL_TLS_SERVER)
+    context.load_cert_chain("certificate.pem", "private_key.pem")
+    Cert_server.socket = context.wrap_socket(Cert_server.socket, server_side=True)
+    Cert_thread = Thread(target=Cert_server.serve_forever)
+    Cert_thread.daemon = True
+    Cert_thread.start()
+    while true:
+        continue
 

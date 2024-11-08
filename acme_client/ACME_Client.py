@@ -22,7 +22,7 @@ class ACME_Client:
         self.nonce = None
         self.ltk = self.gen_EC_key()
         self.pub_key = self.ltk.public_key()
-        self.jwk =self.gen_jwk(pub_key)
+        self.jwk =self.gen_jwk(self.pub_key)
         self.kid = None
 
         self.urls = self.acme_dir(self.dir_url)
