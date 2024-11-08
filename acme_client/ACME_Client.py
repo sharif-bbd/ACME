@@ -52,7 +52,7 @@ class ACME_Client:
         return ltk
 
     def gen_jwk(self, public_key):
-        PK_number = public_key.public_numbers()
+        public_numbers = public_key.public_numbers()
         x = public_numbers.x.to_bytes(32, "big")
         y = public_numbers.y.to_bytes(32, "big")
 
