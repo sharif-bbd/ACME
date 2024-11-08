@@ -20,9 +20,9 @@ class ACME_Client:
         self.dir_url = dir_url
         self.pebble_path = pebble_path
         self.nonce = None
-        self.ltk = gen_EC_key()
+        self.ltk = self.gen_EC_key()
         self.pub_key = ltk.public_key()
-        self.jwk = gen_jwk(pub_key)
+        self.jwk =self.gen_jwk(pub_key)
         self.kid = None
 
         self.urls = self.acme_dir(self.dir_url)
