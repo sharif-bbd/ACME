@@ -22,7 +22,7 @@ if __name__ == "__main__":
     arguments = parser.parse_args()
 
     shutdown_server = HTTPServer(("0.0.0.0", 5003), ShutdownHandler)
-    shutdown_thread = Thread(target=shutdown.serve_forever)
+    shutdown_thread = Thread(target=shutdown_server.serve_forever)
     shutdown_thread.daemon = True
 
 
@@ -56,7 +56,9 @@ if __name__ == "__main__":
     finalize_req = acme_client.finalize(order_response.json())
     acme_client.poll_for_status(order_response.headers.get("Location"), "valid")
 
-    certificate_url = acme_client.get_certificat_url(order_response.headers.get("Location"))
+    certificate_url = acme_client.get_certificate_url(order_response.headers.get("Location"))
+
+    acme_client.save(certificate_url=certificate_url)
     
 
 

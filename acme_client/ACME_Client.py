@@ -257,14 +257,30 @@ class ACME_Client:
         self.poll_for_status(authorization_url, expected_status="valid")
 
 
-    def get_certificat_url(self, order_url):
+    def get_certificate_url(self, order_url):
         response = self.post_as_get(order_url).json()
 
         url = response.get("certificate")
         return url
 
 
+    def save(self, certificate_url):
+        cert_chain_pem = self.post_as_get(certificate_url)
+        cert_chain_pem = cert_chain_pem.content.decode("utf-8")
+        certificate = "certificate.pem"
+        private_key = "private_key.pem"
 
+        with open(certificate, 'wb') as file:
+            file.write(cert_chain_pem.encode())
+        
+        with open(private_key, 'wb') as file:
+            file.write(
+                self.gen_EC_key().private_bytes(
+                    encoding=serialization.Encoding.PEM,
+                    format=serialization.PrivateFormat.TraditionalOpenSSL,
+                    encryption_algorithm=serialization.NoEncryption()
+                )
+            )
 
 
     

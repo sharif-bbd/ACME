@@ -1,5 +1,5 @@
 from http.server import BaseHTTPRequestHandler
 
-class CertificatHandler(BaseHTTPRequestHandler):
+class CertificateHandler(BaseHTTPRequestHandler):
     def do_GET(self):
         return
