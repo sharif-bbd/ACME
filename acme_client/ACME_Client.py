@@ -130,7 +130,7 @@ class ACME_Client:
         if "Replay-Nonce" in response.headers:
             self.nonce = response.headers["Replay-Nonce"]
         else:
-            self.nonce = get_fresh_nonce()
+            self.nonce = self.get_fresh_nonce()
         
         return response
     
@@ -142,7 +142,7 @@ class ACME_Client:
         if "Replay-Nonce" in response.headers:
             self.nonce = response.headers["Replay-Nonce"]
         else:
-            self.nonce = get_fresh_nonce()
+            self.nonce = self.get_fresh_nonce()
 
         return response
 
