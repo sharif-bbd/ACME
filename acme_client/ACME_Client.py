@@ -15,7 +15,7 @@ from acme_client.dns01_handler import DNS01Handler
 
 
 class ACME_Client:
-    def __init__(self, dir_url, alg="ES256", pebble_path = "/Uses/mac/sbouabid-acme-project/project/pebble.minica.pem"):
+    def __init__(self, dir_url, alg="ES256", pebble_path = "project/pebble.minica.pem"):
         self.alg = alg
         self.dir_url = dir_url
         self.pebble_path = pebble_path
