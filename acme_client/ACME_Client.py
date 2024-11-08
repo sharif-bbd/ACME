@@ -59,8 +59,8 @@ class ACME_Client:
         jwk = {
             "kty" : "EC",
             "rcv" : "P-256",
-            "x" : base64_url(x),
-            "y" : base64_url(y)
+            "x" : self.base64_url(x),
+            "y" : self.base64_url(y)
         }
         return jwk
 
