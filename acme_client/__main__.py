@@ -14,7 +14,7 @@ if __name__ == "__main__":
     # Hint: You may want to start by parsing command line arguments and
     # perform some sanity checks first. The built-in `argparse` library will suffice.
     parser = argparse.ArgumentParser(description="ACME Client")
-    parser.add_argument("Challenge_type", choices=["dns01", "http01"], required=True)
+    parser.add_argument("Challenge_type", choices=["dns01", "http01"])
     parser.add_argument("--dir", required=True)
     parser.add_argument("--record", required=True)
     parser.add_argument("--domain", required=True, action="append")
@@ -56,7 +56,7 @@ if __name__ == "__main__":
     finalize_req = acme_client.finalize(order_response.json())
     acme_client.poll_for_status(order_response.headers.get("Location"), "valid")
 
-
+    certificate_url = acme_client.get_certificat_url(order_response.headers.get("Location"))
     
 
 

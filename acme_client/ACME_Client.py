@@ -258,7 +258,10 @@ class ACME_Client:
 
 
     def get_certificat_url(self, order_url):
-        response = self.post_as_get(order_url)
+        response = self.post_as_get(order_url).json()
+
+        url = response.get("certificate")
+        return url
 
 
 
