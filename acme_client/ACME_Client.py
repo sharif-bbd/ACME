@@ -21,7 +21,7 @@ class ACME_Client:
         self.pebble_path = pebble_path
         self.nonce = None
         self.ltk = self.gen_EC_key()
-        self.pub_key = ltk.public_key()
+        self.pub_key = self.ltk.public_key()
         self.jwk =self.gen_jwk(pub_key)
         self.kid = None
 
