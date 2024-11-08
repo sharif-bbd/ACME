@@ -257,7 +257,8 @@ class ACME_Client:
         self.poll_for_status(authorization_url, expected_status="valid")
 
 
-        
+    def get_certificat_url(self, order_url):
+        response = self.post_as_get(order_url)
 
 
 

@@ -6,7 +6,7 @@ from dnslib.server import DNSServer
 
 from acme_client.http01_handler import HTTP01Handler
 from acme_client.dns01_handler import DNS01Handler
-from acme_client.ACME_Client import ACME_Clients
+from acme_client.ACME_Client import ACME_Client
 from acme_client.ShutdownHandler import ShutdownHandler
 
 
@@ -55,6 +55,7 @@ if __name__ == "__main__":
     acme_client.poll_for_status(order_response.headers.get("Location"), "ready")
     finalize_req = acme_client.finalize(order_response.json())
     acme_client.poll_for_status(order_response.headers.get("Location"), "valid")
+
 
     
 
